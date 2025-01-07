@@ -365,6 +365,12 @@
     <data name="EventHandlerDetector_AddEventHandlerHighlighting_Tooltip" xml:space="preserve">
         <value>Unity event handler</value>
     </data>
+    <data name="BoltUsageDetector_AddBoltUsageHighlighting_Text" xml:space="preserve">
+        <value>Bolt</value>
+    </data>
+    <data name="BoltUsageDetector_AddBoltUsageHighlighting_Tooltip" xml:space="preserve">
+        <value>Bolt usages</value>
+    </data>
     <data name="ExpectedAMethodWithSignatureMessage" xml:space="preserve">
         <value>Expected a method with '{0}' signature</value>
     </data>
@@ -1024,6 +1030,9 @@
     </data>
     <data name="UnityAssetSpecificOccurrenceKinds_ComponentUsage_Unity_component_usage" xml:space="preserve">
         <value>Unity component usage</value>
+    </data>
+    <data name="UnityAssetSpecificOccurrenceKinds_BoltUsage_Unity_Bolt_usage" xml:space="preserve">
+        <value>Bolt usage</value>
     </data>
     <data name="UnityAssetSpecificOccurrenceKinds_EventHandler_Unity_event_handler" xml:space="preserve">
         <value>Unity event handler</value>

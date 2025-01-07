@@ -154,5 +154,70 @@ namespace JetBrains.ReSharper.Plugins.Unity.Resources.Icons
 			}
 		}
 		#endregion
+        
+        #region InsightBolt
+		/// <summary>
+		///	<para>
+		///		<para>InsightBolt Themed Icon generated identifiers:</para>
+		///		<para>— <see cref="InsightBolt"></see> identifier class, for use in attributes, XAML, and generic parameters;</para>
+		///		<para>— <see cref="Id"></see> identifier object, as a field in the identifier class, for use where an <see cref="JetBrains.UI.Icons.IconId"></see> value is expected.</para>
+		///		<para>
+		///			<code>
+		///                                 
+		///                                 
+		///                                 
+		///                                 
+		///                                 
+		///                                 
+		///                                 
+		///                                 
+		///                                 
+		///                                 
+		///                                 
+		///                                 
+		///                                 
+		///                                 
+		///                                 
+		///                                 
+		///</code>
+		///		</para>
+		///	</para>
+		///</summary>
+		///<remarks>
+		///	<para>For details on Themed Icons and their use, see Remarks on the outer class.</para>
+		///</remarks>
+		///<example>
+		///	<code>&lt;Image Source="{icons:ThemedIcon myres:FefaxulThemedIconsThemedIcons+InsightBolt}" /&gt;        &lt;!-- XAML --&gt;</code>
+		///</example>
+		///<example>
+		///	<code>[Item(Name="Sample", Icon=typeof(FefaxulThemedIconsThemedIcons.InsightBolt))]        // C# Type attribute</code>
+		///</example>
+		///<example>
+		///	<code>IconId iconid = FefaxulThemedIconsThemedIcons.InsightBolt.Id;        // IconId identifier object</code>
+		///</example>
+		///<example>
+		///	<code>themediconmanager.GetIcon&lt;FefaxulThemedIconsThemedIcons.InsightBolt&gt;()        // Icon image for rendering</code>
+		///</example>
+		[global::JetBrains.Application.Icons.CompiledIconsCs.CompiledIconCsAttribute()]
+		public sealed class InsightBolt : global::JetBrains.Application.Icons.CompiledIconsCs.CompiledIconCsClass
+		{
+			
+			/// <inheritdoc cref="InsightBolt">identifier class</inheritdoc>
+			public static global::JetBrains.UI.Icons.IconId Id = new global::JetBrains.Application.Icons.CompiledIconsCs.CompiledIconCsId(typeof(InsightBolt));
+			
+			/// <summary>Loads the image for Themed Icon InsightBolt theme aspect Default.</summary>
+			public global::JetBrains.Util.Icons.TiImage Load_Default()
+			{
+				return global::JetBrains.Util.Icons.TiImageConverter.FromTiSvg(@"<svg ti:v='1' width='16' height='16' viewBox='0,0,16,16' xmlns='http://www.w3.org/2000/svg' xmlns:ti='urn:schemas-jetbrains-com:tisvg'><g><path d='M321.7 0c19.1 0 32.9 18.3 27.6 36.6L295.8 224h85.2c19.3 0 34.9 15.6 34.9 34.9c0 10.3-4.5 20-12.3 26.6L144.9 505.2c-5.2 4.4-11.8 6.8-18.6 6.8c-19.1 0-32.9-18.3-27.6-36.6L152.2 288H65.7C47.1 288 32 272.9 32 254.3c0-9.9 4.3-19.2 11.8-25.6L303.1 6.9C308.3 2.4 314.9 0 321.7 0zM285.6 85L104.4 240H184c7.5 0 14.6 3.5 19.2 9.5s6 13.8 3.9 21L162.3 427.5 345.5 272H264c-7.5 0-14.6-3.5-19.2-9.5s-6-13.8-3.9-21L285.6 85z' fill='#ff0000'/></g></svg>");
+			}
+			
+			/// <summary>Returns the set of theme images for Themed Icon InsightBolt.</summary>
+			public override global::JetBrains.Application.Icons.CompiledIconsCs.CompiledIconCsIdOwner.ThemedIconThemeImage[] GetThemeImages()
+			{
+				return new global::JetBrains.Application.Icons.CompiledIconsCs.CompiledIconCsIdOwner.ThemedIconThemeImage[] {
+						new global::JetBrains.Application.Icons.CompiledIconsCs.CompiledIconCsIdOwner.ThemedIconThemeImage("Default", new global::JetBrains.Application.Icons.CompiledIconsCs.CompiledIconCsIdOwner.LoadImageDelegate(this.Load_Default))};
+			}
+		}
+		#endregion
     }
 }

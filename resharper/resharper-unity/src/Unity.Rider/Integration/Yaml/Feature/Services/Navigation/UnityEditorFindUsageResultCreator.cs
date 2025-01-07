@@ -234,7 +234,9 @@ namespace JetBrains.ReSharper.Plugins.Unity.Rider.Integration.Yaml.Feature.Servi
             {
                 var sourceFile = myPersistentIndexManager[data.OwningElementLocation.OwningPsiPersistentIndex];
                 if (sourceFile == null)
+                {
                     return FindExecution.Continue;
+                }
 
                 var request = CreateRequest(myPackageManager, myLogger, mySolutionDirectoryPath, myAssetHierarchyProcessor, myAnimatorContainer,
                     data.OwningElementLocation, sourceFile, myDeclaredElement);

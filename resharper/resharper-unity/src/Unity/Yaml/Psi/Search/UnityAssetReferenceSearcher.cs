@@ -9,6 +9,7 @@ using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches;
 using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches.Anim.Explicit;
 using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches.Anim.Implicit;
 using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches.AssetInspectorValues;
+using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches.BoltUsages;
 using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches.UnityEvents;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.ExtensionsAPI;
@@ -27,6 +28,7 @@ namespace JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.Search
         private readonly DeferredCacheController myDeferredCacheController;
         [NotNull, ItemNotNull] private readonly IEnumerable<IScriptUsagesElementContainer> myScriptsUsagesElementContainers;
         private readonly UnityEventsElementContainer myUnityEventsElementContainer;
+        private readonly BoltUsagesElementContainer myBoltUsagesElementContainer;
         private readonly AssetInspectorValuesContainer myAssetInspectorValuesContainer;
         private readonly IDeclaredElementsSet myElements;
         private readonly AnimExplicitUsagesContainer myAnimExplicitUsagesContainer;
@@ -36,6 +38,7 @@ namespace JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.Search
         public UnityAssetReferenceSearcher(DeferredCacheController deferredCacheController,
                                            [NotNull, ItemNotNull] IEnumerable<IScriptUsagesElementContainer> scriptsUsagesElementContainers,
                                            UnityEventsElementContainer unityEventsElementContainer,
+                                           BoltUsagesElementContainer boltUsagesElementContainer,
                                            [NotNull] AnimExplicitUsagesContainer animExplicitUsagesContainer,
                                            [NotNull] AnimImplicitUsagesContainer animImplicitUsagesContainer,
                                            AssetInspectorValuesContainer assetInspectorValuesContainer,
@@ -45,6 +48,7 @@ namespace JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.Search
             myDeferredCacheController = deferredCacheController;
             myScriptsUsagesElementContainers = scriptsUsagesElementContainers;
             myUnityEventsElementContainer = unityEventsElementContainer;
+            myBoltUsagesElementContainer = boltUsagesElementContainer;
             myAnimExplicitUsagesContainer = animExplicitUsagesContainer;
             myAnimImplicitUsagesContainer = animImplicitUsagesContainer;
             myAssetInspectorValuesContainer = assetInspectorValuesContainer;
@@ -99,6 +103,12 @@ namespace JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.Search
 
                         var usages = myUnityEventsElementContainer.GetAssetUsagesFor(sourceFile, element);
                         foreach (var findResult in usages)
+                        {
+                            consumer.Accept(findResult);
+                        }
+
+                        var boltUsages = myBoltUsagesElementContainer.GetAssetUsagesFor(sourceFile, element);
+                        foreach (var findResult in boltUsages)
                         {
                             consumer.Accept(findResult);
                         }

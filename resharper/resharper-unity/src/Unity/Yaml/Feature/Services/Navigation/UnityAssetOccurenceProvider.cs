@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using JetBrains.ReSharper.Feature.Services.Occurrences;
 using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches.AnimatorUsages;
 using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches.AssetScriptUsages;
+using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches.BoltUsages;
 using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches.UnityEvents;
 using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.Search;
 using JetBrains.ReSharper.Psi.Search;
@@ -43,6 +44,11 @@ namespace JetBrains.ReSharper.Plugins.Unity.Yaml.Feature.Services.Navigation
             {
                 return new UnityEventHandlerOccurrence(unityMethodsFindResult.SourceFile, unityMethodsFindResult.DeclaredElementPointer,
                     unityMethodsFindResult.OwningElementLocation, unityMethodsFindResult.AssetMethodUsages, unityMethodsFindResult.IsPrefabModification); 
+            }
+
+            if (findResult is BoltUsageFindResult boltUsageFindResult)
+            {
+                return new BoltUsageOccurrence(boltUsageFindResult.SourceFile, boltUsageFindResult.DeclaredElementPointer, boltUsageFindResult.OwningElementLocation, boltUsageFindResult.BoltGraphMethodUsages); 
             }
             
             return null;

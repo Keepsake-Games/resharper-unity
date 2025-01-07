@@ -364,7 +364,6 @@ namespace JetBrains.ReSharper.Plugins.Unity.Resources.Icons
 
         #endregion
 
-
         #region FileUnityMeta
 
         /// <summary>

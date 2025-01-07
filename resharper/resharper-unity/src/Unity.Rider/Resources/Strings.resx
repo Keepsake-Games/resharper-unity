@@ -71,6 +71,12 @@
     <data name="RiderEventHandlerDetector_AddEventsHighlighting_Click_to_view_usages_in_assets" xml:space="preserve">
         <value>Click to view usages in assets</value>
     </data>
+    <data name="RiderBoltUsageDetector_AddBoltUsageHighlighting_Bolt_usages" xml:space="preserve">
+        <value>Bolt usages</value>
+    </data>
+    <data name="RiderBoltUsageDetector_AddBoltUsageHighlighting_Click_to_view_usages_in_Bolt" xml:space="preserve">
+        <value>Click to view usages in Bolt</value>
+    </data>
     <data name="RiderFieldDetector_AddMonoBehaviourHighlighting_Inspector_values_are_not_available_during_asset_indexing" xml:space="preserve">
         <value>Inspector values are not available during asset indexing</value>
     </data>
@@ -112,6 +118,9 @@
     </data>
     <data name="UnityCodeInsightFieldUsageProvider_DisplayName_Unity_serialized_field" xml:space="preserve">
         <value>Unity serialized field</value>
+    </data>
+    <data name="UnityBoltUsagesCodeVisionProvider_DisplayName_Unity_assets_usage" xml:space="preserve">
+        <value>Unity Bolt usage</value>
     </data>
     <data name="UnityController_StartUnityInternal_Start_Unity_Editor" xml:space="preserve">
         <value>Start Unity Editor</value>
@@ -226,6 +235,9 @@
     <data name="UnityCodeInsightFieldUsageProvider_GetTooltip_Changed_in__0__assets" xml:space="preserve">
         <value>Changed in {0} assets</value>
     </data>
+    <data name="UnityCodeInsightBoltUsageProvider_GetTooltip___0__Bolt_usages" xml:space="preserve">
+        <value>{0} Bolt usage(s)</value>
+    </data>
     <data name="UnityCodeInsightFieldUsageProvider_AddInspectorHighlighting_No_methods" xml:space="preserve">
         <value>No methods</value>
     </data>
@@ -237,6 +249,15 @@
     </data>
     <data name="UnityCodeInsightFieldUsageProvider_AddInspectorHighlighting_methods" xml:space="preserve">
         <value>methods</value>
+    </data>
+    <data name="UnityBoltUsagesCodeVisionProvider_GetText_No_Bolt_usages" xml:space="preserve">
+        <value>No Bolt usage</value>
+    </data>
+    <data name="UnityBoltUsagesCodeVisionProvider_Noun_Bolt_usage" xml:space="preserve">
+        <value>Bolt usage</value>
+    </data>
+    <data name="UnityBoltUsagesCodeVisionProvider_Noun_Bolt_usages" xml:space="preserve">
+        <value>Bolt usages</value>
     </data>
     <data name="AnimatorGroupingRule_AnimatorGroupingRule_Animator" xml:space="preserve">
         <value>Animator</value>

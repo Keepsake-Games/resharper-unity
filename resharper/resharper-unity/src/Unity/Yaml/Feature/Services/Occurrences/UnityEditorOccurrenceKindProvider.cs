@@ -20,6 +20,8 @@ namespace JetBrains.ReSharper.Plugins.Unity.Yaml.Feature.Services.Occurrences
                 return new[] {UnityAssetSpecificOccurrenceKinds.InspectorUsage};
             if (occurrence is UnityEventSubscriptionOccurrence)
                 return new[] {UnityAssetSpecificOccurrenceKinds.EventHandler};
+            if (occurrence is BoltUsageOccurrence)
+                return new[] { UnityAssetSpecificOccurrenceKinds.BoltUsage };
             return EmptyList<OccurrenceKind>.Instance;
         }
 
@@ -30,7 +32,8 @@ namespace JetBrains.ReSharper.Plugins.Unity.Yaml.Feature.Services.Occurrences
             {
                 UnityAssetSpecificOccurrenceKinds.EventHandler,
                 UnityAssetSpecificOccurrenceKinds.ComponentUsage,
-                UnityAssetSpecificOccurrenceKinds.InspectorUsage
+                UnityAssetSpecificOccurrenceKinds.InspectorUsage,
+                UnityAssetSpecificOccurrenceKinds.BoltUsage
             };
         }
     }

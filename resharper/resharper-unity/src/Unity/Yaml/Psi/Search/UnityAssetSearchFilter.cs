@@ -8,6 +8,7 @@ using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches;
 using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches.Anim.Explicit;
 using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches.Anim.Implicit;
 using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches.AssetInspectorValues;
+using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches.BoltUsages;
 using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches.UnityEvents;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Finder;
@@ -21,6 +22,7 @@ namespace JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.Search
     {
         [NotNull, ItemNotNull] private readonly IEnumerable<IScriptUsagesElementContainer> myScriptsUsagesElementContainers;
         private readonly UnityEventsElementContainer myUnityEventsElementContainer;
+        private readonly BoltUsagesElementContainer myBoltUsagesElementContainer;
         private readonly AnimExplicitUsagesContainer myAnimExplicitUsagesContainer;
         private readonly AnimImplicitUsagesContainer myAnimImplicitUsagesContainer;
         private readonly AssetInspectorValuesContainer myInspectorValuesContainer;
@@ -28,12 +30,14 @@ namespace JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.Search
         public UnityYamlSearchFilter(UnityApi unityApi,
                                    [NotNull, ItemNotNull] IEnumerable<IScriptUsagesElementContainer> scriptsUsagesElementContainers,
                                    UnityEventsElementContainer unityEventsElementContainer,
+                                   BoltUsagesElementContainer boltUsagesElementContainer,
                                    AnimExplicitUsagesContainer animExplicitUsagesContainer,
                                    AnimImplicitUsagesContainer animImplicitUsagesContainer,
                                    AssetInspectorValuesContainer container)
         {
             myScriptsUsagesElementContainers = scriptsUsagesElementContainers;
             myUnityEventsElementContainer = unityEventsElementContainer;
+            myBoltUsagesElementContainer = boltUsagesElementContainer;
             myAnimExplicitUsagesContainer = animExplicitUsagesContainer;
             myAnimImplicitUsagesContainer = animImplicitUsagesContainer;
             myInspectorValuesContainer = container;
@@ -64,6 +68,8 @@ namespace JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.Search
                     foreach (var file in myAnimImplicitUsagesContainer.GetPossibleFilesWithUsage(element))
                         set.Add(file);
                     foreach (var sourceFile in myUnityEventsElementContainer.GetPossibleFilesWithUsage(element))
+                        set.Add(sourceFile);
+                    foreach (var sourceFile in myBoltUsagesElementContainer.GetPossibleFilesWithUsage(element))
                         set.Add(sourceFile);
                     break;
                 case IField field:
