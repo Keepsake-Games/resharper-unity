@@ -11,6 +11,7 @@ using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches.Anim.Explicit;
 using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches.Anim.Implicit;
 using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches.AssetHierarchy;
 using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches.AssetInspectorValues;
+using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches.BoltUsages;
 using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches.UnityEvents;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.ExtensionsAPI;
@@ -50,6 +51,7 @@ namespace JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.Search
             var solution = elements.FirstOrDefault().NotNull("elements.FirstOrDefault() != null").GetSolution();
             var hierarchyContainer = solution.GetComponent<AssetDocumentHierarchyElementContainer>();
             var methodsContainer = solution.GetComponent<UnityEventsElementContainer>();
+            var boltContainer = solution.GetComponent<BoltUsagesElementContainer>();
             var metaFileGuidCache = solution.GetComponent<MetaFileGuidCache>();
             var scriptsUsagesContainers = solution.GetComponent<IEnumerable<IScriptUsagesElementContainer>>();
             var animExplicitUsagesContainer = solution.GetComponent<AnimExplicitUsagesContainer>();
@@ -58,7 +60,7 @@ namespace JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.Search
             var controller = solution.GetComponent<DeferredCacheController>();
 
             return new UnityAssetReferenceSearcher(controller, scriptsUsagesContainers,
-                methodsContainer, animExplicitUsagesContainer, animImplicitUsagesContainer,
+                methodsContainer, boltContainer, animExplicitUsagesContainer, animImplicitUsagesContainer,
                 assetValuesContainer, elements,
                 referenceSearcherParameters);
         }
@@ -118,8 +120,11 @@ namespace JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.Search
                     var animationImplicitEventsCount = solution
                         .GetComponent<AnimImplicitUsagesContainer>()
                         .GetEventUsagesCountFor(element, out var animationImplicitEventsEstimatedResult);
-                    var count = eventsCount + animationEventsCount + animationImplicitEventsCount;
-                    return count > 0 || unityEventsEstimatedResult || animationEventsEstimatedResult || animationImplicitEventsEstimatedResult;
+                    var boltUsageCount = solution
+                        .GetComponent<BoltUsagesElementContainer>()
+                        .GetAssetUsagesCount(element, out var boltUsageEstimatedResult);
+                    var count = eventsCount + animationEventsCount + animationImplicitEventsCount + boltUsageCount;
+                    return count > 0 || unityEventsEstimatedResult || animationEventsEstimatedResult || animationImplicitEventsEstimatedResult || boltUsageEstimatedResult;
 
                 case IField field:
                     return unityApi.IsSerialisedField(field).HasFlag(SerializedFieldStatus.UnitySerializedField);

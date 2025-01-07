@@ -5,6 +5,7 @@ using JetBrains.ReSharper.Feature.Services.DeferredCaches;
 using JetBrains.ReSharper.Feature.Services.Refactorings.Specific.Rename;
 using JetBrains.ReSharper.Plugins.Unity.UnityEditorIntegration.Api;
 using JetBrains.ReSharper.Plugins.Unity.Utils;
+using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches.BoltUsages;
 using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches.UnityEvents;
 using JetBrains.ReSharper.Psi;
 
@@ -18,7 +19,7 @@ namespace JetBrains.ReSharper.Plugins.Unity.CSharp.Feature.Services.Refactorings
             if (!declaredElement.IsFromUnityProject())
                 return false;
 
-            return IsPossibleEventHandler(declaredElement) || IsUsedAsArgumentTypeName(declaredElement);
+            return IsPossibleEventHandler(declaredElement) || IsUsedAsArgumentTypeName(declaredElement) || IsUsedInBolt(declaredElement);
         }
         
         public RenameAvailabilityCheckResult CheckRenameAvailability(IDeclaredElement element)
@@ -63,7 +64,39 @@ namespace JetBrains.ReSharper.Plugins.Unity.CSharp.Feature.Services.Refactorings
                     return false;
             }
         }
-        
+
+        private static bool IsUsedInBolt(IDeclaredElement declaredElement)
+        {
+            var clrDeclaredElement = declaredElement as IClrDeclaredElement;
+
+            switch (clrDeclaredElement)
+            {
+                case IProperty _:
+                case IMethod _:
+                    var containingType = clrDeclaredElement.GetContainingType();
+                    if (containingType == null)
+                        return false;
+
+                    var solution = clrDeclaredElement.GetSolution();
+
+                    var knownTypesCache = solution.GetComponent<KnownTypesCache>();
+                    var unityObjectType = knownTypesCache.GetByClrTypeName(KnownTypes.Object, clrDeclaredElement.Module).GetTypeElement();
+                    var result = containingType.IsDescendantOf(unityObjectType);
+                    if (!result)
+                        return false;
+                    var cacheController = solution.GetComponent<DeferredCacheController>();
+
+                    if (cacheController.IsProcessingFiles())
+                        return true;
+
+                    var boltUsages = solution.GetComponent<BoltUsagesElementContainer>();
+                    return boltUsages.GetAssetUsagesCount(clrDeclaredElement, out bool estimatedResult) > 0 || estimatedResult;
+
+                default:
+                    return false;
+            }
+        }
+
         private bool IsUsedAsArgumentTypeName(IDeclaredElement declaredElement)
         {
             var script = declaredElement as IClass;

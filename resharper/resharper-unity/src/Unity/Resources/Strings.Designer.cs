@@ -176,6 +176,8 @@ namespace JetBrains.ReSharper.Plugins.Unity.Resources
     public static string EventHandlerDetector_AddAnimationEventHighlighting_Tooltip => ResourceManager.GetString("EventHandlerDetector_AddAnimationEventHighlighting_Tooltip");
     public static string EventHandlerDetector_AddEventHandlerHighlighting_Text => ResourceManager.GetString("EventHandlerDetector_AddEventHandlerHighlighting_Text");
     public static string EventHandlerDetector_AddEventHandlerHighlighting_Tooltip => ResourceManager.GetString("EventHandlerDetector_AddEventHandlerHighlighting_Tooltip");
+    public static string BoltUsageDetector_AddBoltUsageHighlighting_Text => ResourceManager.GetString("BoltUsageDetector_AddBoltUsageHighlighting_Text");
+    public static string BoltUsageDetector_AddBoltUsageHighlighting_Tooltip => ResourceManager.GetString("BoltUsageDetector_AddBoltUsageHighlighting_Tooltip");
     public static string ExpectedAMethodWithSignatureMessage => ResourceManager.GetString("ExpectedAMethodWithSignatureMessage");
     public static string ExpectedBuiltInTypeDerivedFromComponentOrUserTypeDerivedFromMonoBehaviour => ResourceManager.GetString("ExpectedBuiltInTypeDerivedFromComponentOrUserTypeDerivedFromMonoBehaviour");
     public static string ExpectedTypeDerivedFromComponentOrMonoBehaviour => ResourceManager.GetString("ExpectedTypeDerivedFromComponentOrMonoBehaviour");
@@ -391,6 +393,7 @@ namespace JetBrains.ReSharper.Plugins.Unity.Resources
     public static string Unity_Internal_SerializeReferencesDump_Text => ResourceManager.GetString("Unity_Internal_SerializeReferencesDump_Text");
     public static string UnityAssetsFolder_Text => ResourceManager.GetString("UnityAssetsFolder_Text");
     public static string UnityAssetSpecificOccurrenceKinds_ComponentUsage_Unity_component_usage => ResourceManager.GetString("UnityAssetSpecificOccurrenceKinds_ComponentUsage_Unity_component_usage");
+    public static string UnityAssetSpecificOccurrenceKinds_BoltUsage_Unity_Bolt_usage => ResourceManager.GetString("UnityAssetSpecificOccurrenceKinds_BoltUsage_Unity_Bolt_usage");
     public static string UnityAssetSpecificOccurrenceKinds_EventHandler_Unity_event_handler => ResourceManager.GetString("UnityAssetSpecificOccurrenceKinds_EventHandler_Unity_event_handler");
     public static string UnityAssetSpecificOccurrenceKinds_InspectorUsage_Inspector_values => ResourceManager.GetString("UnityAssetSpecificOccurrenceKinds_InspectorUsage_Inspector_values");
     public static string UnityCommonIconProvider_GetEventFunctionTooltip_This_function_can_be_a_coroutine_ => ResourceManager.GetString("UnityCommonIconProvider_GetEventFunctionTooltip_This_function_can_be_a_coroutine_");

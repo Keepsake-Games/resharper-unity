@@ -21,6 +21,7 @@ namespace JetBrains.ReSharper.Plugins.Unity.Yaml.Feature.Services.Occurrences
         {
             if (occurrenceKind == UnityAssetSpecificOccurrenceKinds.EventHandler ||
                 occurrenceKind == UnityAssetSpecificOccurrenceKinds.ComponentUsage ||
+                occurrenceKind == UnityAssetSpecificOccurrenceKinds.BoltUsage ||
                 occurrenceKind == UnityAssetSpecificOccurrenceKinds.InspectorUsage)
                 return -10;
             return 0;

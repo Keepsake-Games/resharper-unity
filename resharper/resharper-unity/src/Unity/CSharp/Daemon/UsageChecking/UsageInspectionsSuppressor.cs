@@ -15,6 +15,7 @@ using JetBrains.ReSharper.Plugins.Unity.Utils;
 using JetBrains.ReSharper.Plugins.Unity.Yaml;
 using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches.Anim.Explicit;
 using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches.Anim.Implicit;
+using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches.BoltUsages;
 using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches.InputActions;
 using JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches.UnityEvents;
 using JetBrains.ReSharper.Psi;
@@ -92,6 +93,7 @@ namespace JetBrains.ReSharper.Plugins.Unity.CSharp.Daemon.UsageChecking
                     }
 
                     if (IsEventHandler(unityApi, method) ||
+                        IsBoltUsage(unityApi, method) ||
                         IsRequiredSignatureMethod(method) ||
                         IsAnimationEvent(solution, method) ||
                         IsImplicitlyUsedInterfaceMethod(method) ||
@@ -211,6 +213,23 @@ namespace JetBrains.ReSharper.Plugins.Unity.CSharp.Daemon.UsageChecking
                 .GetComponent<UnityEventsElementContainer>()
                 .GetAssetUsagesCount(method, out bool estimatedResult);
             return eventsCount > 0 || estimatedResult;
+        }
+
+        private static bool IsBoltUsage(UnityApi unityApi, IMethod? method)
+        {
+            if (method == null)
+                return false;
+
+            var type = method.ContainingType;
+            if (!unityApi.IsUnityType(type))
+                return false;
+
+            var solution = method.GetSolution();
+
+            var usageCount = solution
+                .GetComponent<BoltUsagesElementContainer>()
+                .GetAssetUsagesCount(method, out bool estimatedResult);
+            return usageCount > 0 || estimatedResult;
         }
 
         // If the method is marked with an attribute that has a method that is itself marked with RequiredSignature,
