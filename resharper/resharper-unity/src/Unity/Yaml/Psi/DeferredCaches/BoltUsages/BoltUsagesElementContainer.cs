@@ -413,7 +413,8 @@ namespace JetBrains.ReSharper.Plugins.Unity.Yaml.Psi.DeferredCaches.BoltUsages
             var pos = assetDocument.StartOffset + jsonStartOffset.Offset;
             for (var i = 1; i < reader.LineNumber; ++i)
             {
-                pos += jsonLines[i - 1].Length;
+                // seems to drift 1 per line, I'm guessing its the newline character or so, so compensate here
+                pos += jsonLines[i - 1].Length + 1;
             }
 
             pos += reader.LinePosition;
